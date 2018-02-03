@@ -1,39 +1,50 @@
 package edu.fsu.cs.mobile.hw3;
 
+
+import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+
+
+public class MyWebFragment extends android.support.v4.app.Fragment {
 
 
 
-public class MyWebFragment extends Fragment {
+    private WebView mWebView;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mWebView = (WebView) getActivity().findViewById(R.id.webview);
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
+        mWebView.loadUrl("http://beta.html5test.com/");
+
+    }
 
     private OnFragmentInteractionListener mListener;
-
     public MyWebFragment() {
-        // Required empty public constructor
-    }
+            // Required empty public constructor
+        }
+
 
     public static MyWebFragment newInstance(String param1, String param2) {
         MyWebFragment fragment = new MyWebFragment();
         Bundle args = new Bundle();
 
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override

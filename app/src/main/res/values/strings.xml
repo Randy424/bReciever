@@ -3,4 +3,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="urls">
+        <item>https://www.google.com</item>
+        <item>https://www.netflix.com</item>
+        <item>https://www.hulu.com</item>
+    </string-array>
+
 </resources>
