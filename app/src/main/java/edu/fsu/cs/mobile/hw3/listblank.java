@@ -1,6 +1,7 @@
 package edu.fsu.cs.mobile.hw3;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -57,7 +60,22 @@ public class listblank extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+        SharedPreferences settings = getActivity().getSharedPreferences("PREFS", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("url"+1,"https://www.google.com" );
+        editor.putString("url"+2,"https://www.netflix.com" );
+        editor.putString("url"+3,"https://www.hulu.com" );
+        editor.putInt("urlnumber", 3);
+        editor.commit();
     }
+
+
+
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,7 +86,7 @@ public class listblank extends Fragment {
         Array.add("https://www.netflix.com");
         Array.add("https://www.hulu.com");
 
-
+        SharedPreferences pref = this.getActivity().getSharedPreferences("PREFS",0);
 
 
 

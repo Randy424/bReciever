@@ -26,11 +26,7 @@ public class MyWebFragment extends android.support.v4.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mWebView = (WebView) getActivity().findViewById(R.id.webview);
-        WebSettings webSettings = mWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
 
-        mWebView.loadUrl("http://beta.html5test.com/");
 
     }
 
@@ -51,6 +47,11 @@ public class MyWebFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        WebView webview = (WebView) getActivity().findViewById(R.id.webview);
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.loadUrl("http://beta.html5test.com/");
+
         return inflater.inflate(R.layout.fragment_my_web, container, false);
     }
 

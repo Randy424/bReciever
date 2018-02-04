@@ -42,7 +42,10 @@ public class MyReceiver extends BroadcastReceiver{
 
         SharedPreferences settings = ctxt.getSharedPreferences("PREFS", 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("url", url);
+        int unum = settings.getInt("urlnumber", 0);
+        unum = unum + 1;
+        editor.putInt("urlnumber", unum);
+        editor.putString("url"+unum, url);
         editor.commit();
         return ctxt.getSharedPreferences("FILE", 0);
 
