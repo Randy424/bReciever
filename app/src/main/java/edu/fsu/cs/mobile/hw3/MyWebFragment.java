@@ -50,7 +50,11 @@ public class MyWebFragment extends android.support.v4.app.Fragment {
 
         WebView webview = (WebView) getActivity().findViewById(R.id.webview);
         webview.getSettings().setJavaScriptEnabled(true);
-        webview.loadUrl("http://beta.html5test.com/");
+
+        Bundle bundle = this.getArguments();
+        String website = bundle.getString("site");
+
+        webview.loadUrl(website);
 
         return inflater.inflate(R.layout.fragment_my_web, container, false);
     }

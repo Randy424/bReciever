@@ -104,12 +104,22 @@ public class listblank extends Fragment {
         return v;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    public void onButtonPressed(View view){
+        //txtView.setText(hello);
+        TextView clickedTextView = (TextView) view;
+        String website = clickedTextView.getText().toString();
+
+        Fragment fragment = new Fragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("site", website);
+        fragment.setArguments(bundle);
+
+        //printmyname();
+       // Toast.makeText(NameonbuttonclickActivity.this, hello, Toast.LENGTH_LONG).show();
+
     }
+
+
 
     @Override
     public void onAttach(Context context) {
