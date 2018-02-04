@@ -9,6 +9,7 @@ import android.os.Build;
 import android.provider.Telephony;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.telephony.SmsMessage;
 
 public class MyReceiver extends BroadcastReceiver{
@@ -47,6 +48,9 @@ public class MyReceiver extends BroadcastReceiver{
         editor.putInt("urlnumber", unum);
         editor.putString("url"+unum, url);
         editor.commit();
+
+
+
         return ctxt.getSharedPreferences("FILE", 0);
 
 

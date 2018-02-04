@@ -14,11 +14,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 
 public class MyWebFragment extends android.support.v4.app.Fragment {
-
-
 
     private WebView mWebView;
 
@@ -48,12 +47,12 @@ public class MyWebFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+
         WebView webview = (WebView) getActivity().findViewById(R.id.webview);
         webview.getSettings().setJavaScriptEnabled(true);
 
-        Bundle bundle = this.getArguments();
-        String website = bundle.getString("site");
-
+        String website = MainActivity.myBundle.getString("site");
+        webview.setWebViewClient(new WebViewClient());
         webview.loadUrl(website);
 
         return inflater.inflate(R.layout.fragment_my_web, container, false);

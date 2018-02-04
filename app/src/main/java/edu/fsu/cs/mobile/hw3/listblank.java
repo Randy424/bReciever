@@ -1,14 +1,18 @@
 package edu.fsu.cs.mobile.hw3;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -101,23 +105,26 @@ public class listblank extends Fragment {
 
         listView.setAdapter(Adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                String website = ((TextView)view).getText().toString();
+
+                MainActivity.myBundle.putString("site", website);
+
+                Fragment someFragment = new MyWebFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.web, someFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
         return v;
     }
 
-    public void onButtonPressed(View view){
-        //txtView.setText(hello);
-        TextView clickedTextView = (TextView) view;
-        String website = clickedTextView.getText().toString();
 
-        Fragment fragment = new Fragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("site", website);
-        fragment.setArguments(bundle);
-
-        //printmyname();
-       // Toast.makeText(NameonbuttonclickActivity.this, hello, Toast.LENGTH_LONG).show();
-
-    }
 
 
 

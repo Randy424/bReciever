@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 public class MainActivity extends AppCompatActivity
         implements listblank.OnFragmentInteractionListener, MyWebFragment.OnFragmentInteractionListener {
 
+    public static Bundle myBundle = new Bundle();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity
         for(int i = 1;i < 4; i++)
         {Log.i("URLS!!!:",settings.getString("url"+i, "nothing was found"));}
 
+        myBundle.putString("site", "https://www.google.com");
 
     }
 
