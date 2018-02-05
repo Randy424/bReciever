@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,13 +67,6 @@ public class listblank extends Fragment {
         }
 
 
-        SharedPreferences settings = getActivity().getSharedPreferences("PREFS", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("url"+1,"https://www.google.com" );
-        editor.putString("url"+2,"https://www.netflix.com" );
-        editor.putString("url"+3,"https://www.hulu.com" );
-        editor.putInt("urlnumber", 3);
-        editor.commit();
     }
 
 
@@ -85,12 +79,18 @@ public class listblank extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ArrayList<String> Array = new ArrayList<String>();
-        Array.add("https://www.google.com");
-        Array.add("https://www.netflix.com");
-        Array.add("https://www.hulu.com");
-
         SharedPreferences pref = this.getActivity().getSharedPreferences("PREFS",0);
+
+        ArrayList <String> l = new ArrayList<>();
+
+        SharedPreferences settings = this.getActivity().getSharedPreferences("PREFS", 0);
+        SharedPreferences.Editor editor = settings.edit();
+       int i = ( settings.getInt("urlnumber", 0));
+
+        for(int x = 1;x <= i; x++)
+        {
+            l.add(settings.getString("url"+ x, "couldn't find string"));}
+
 
 
 
@@ -101,7 +101,7 @@ public class listblank extends Fragment {
 
         ArrayAdapter <String>  Adapter = new ArrayAdapter<String>(
                 getActivity(), android.R.layout.simple_list_item_1,
-             getResources().getStringArray(R.array.urls));
+             l);
 
         listView.setAdapter(Adapter);
 

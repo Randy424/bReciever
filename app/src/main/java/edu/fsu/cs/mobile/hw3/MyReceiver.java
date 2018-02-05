@@ -11,6 +11,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.telephony.SmsMessage;
+import android.util.Log;
+import android.util.Patterns;
+import android.webkit.URLUtil;
 
 public class MyReceiver extends BroadcastReceiver{
 
@@ -27,34 +30,7 @@ public class MyReceiver extends BroadcastReceiver{
 
             // TODO: Extract url from sms and add to UrlListFragment
         }
-        @TargetApi(Build.VERSION_CODES.M)
-        public  String extractUrlFromIntent(Intent intent) {
-            SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
 
-            for(int i = 0; i < messages.length; i++) {
-                String messagebody = messages[i].getMessageBody();
-                url += messagebody;
-
-            }
-            return url;
-        }
-
-    public static SharedPreferences getSharedPreferences (Context ctxt) {
-
-        SharedPreferences settings = ctxt.getSharedPreferences("PREFS", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        int unum = settings.getInt("urlnumber", 0);
-        unum = unum + 1;
-        editor.putInt("urlnumber", unum);
-        editor.putString("url"+unum, url);
-        editor.commit();
-
-
-
-        return ctxt.getSharedPreferences("FILE", 0);
-
-
-    }
 
 
     }
