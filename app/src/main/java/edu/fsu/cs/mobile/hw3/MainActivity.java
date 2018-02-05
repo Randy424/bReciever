@@ -27,7 +27,7 @@ import edu.fsu.cs.mobile.hw3.MyReceiver;
 
 
 public class MainActivity extends AppCompatActivity
-        implements listblank.OnFragmentInteractionListener, MyWebFragment.OnFragmentInteractionListener {
+        implements UrlListFragment.OnFragmentInteractionListener, MyWebFragment.OnFragmentInteractionListener {
 
     public static final String SMS_RECEIVED_ACTION =
             "android.provider.Telephony.SMS_RECEIVED";
@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity
                 .commit();
 
 
-        listblank listblank = new listblank();
+        UrlListFragment UrlListFragment = new UrlListFragment();
         m.beginTransaction()
-                .replace(R.id.secondlayout,listblank,listblank.getTag())
+                .replace(R.id.secondlayout,UrlListFragment,UrlListFragment.getTag())
                 .commit();
 
 
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity
             SharedPreferences settings = context.getSharedPreferences("PREFS", 0);
             SharedPreferences.Editor editor = settings.edit();
             int unum = settings.getInt("urlnumber", 0);
-            unum = unum + 1;
+            unum = 4;
 
             if(!URLUtil.isValidUrl(c)) {
                 c = "https://" + c;
@@ -125,10 +125,10 @@ public class MainActivity extends AppCompatActivity
             {Log.i("URLS!!!:",settings.getString("url"+i, "nothing was found"));}
 
 
-            listblank listblank = new listblank();
+            UrlListFragment UrlListFragment = new UrlListFragment();
             FragmentManager m = getSupportFragmentManager();
             m.beginTransaction()
-                    .replace(R.id.secondlayout,listblank,listblank.getTag())
+                    .replace(R.id.secondlayout, UrlListFragment,UrlListFragment.getTag())
                     .commit();
 
             myBundle.putString("site", settings.getString("url"+x, "nothing was found"));
