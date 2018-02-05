@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         public void onReceive(Context context, Intent intent) {
-            
+
 
                 // TODO: Extract url from sms and add to UrlListFragment
 
@@ -118,9 +118,6 @@ public class MainActivity extends AppCompatActivity
             editor.commit();
 
             url = "";
-
-
-
 
 
             int x = settings.getInt("urlnumber", 0);
